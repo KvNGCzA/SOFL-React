@@ -1,0 +1,5 @@
+export const SIDEBAR_SUCCESS = 'SIDEBAR_SUCCESS';
+export const SIDEBAR_FAILURE = 'SIDEBAR_FAILURE';
+
+export const HOME_SUCCESS = 'HOME_SUCCESS';
+export const HOME_FAILURE = 'HOME_FAILURE';

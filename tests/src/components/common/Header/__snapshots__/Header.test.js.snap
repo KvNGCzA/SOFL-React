@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound snapshot test 1`] = `
+<header>
+  <h2
+    className="welcome"
+  >
+    <Link
+      replace={false}
+      to="/"
+    >
+      stackOverflowLite
+    </Link>
+  </h2>
+  <nav
+    className="main-navigation"
+  >
+    <ul>
+      <li>
+        <Link
+          replace={false}
+          to="/"
+        >
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link
+          className="profile-link"
+          replace={false}
+          to=""
+        >
+          Profile
+        </Link>
+      </li>
+      <li>
+        <Link
+          className="logout"
+          replace={false}
+          to="#"
+        >
+          Logout
+        </Link>
+      </li>
+      <li>
+        <Link
+          replace={false}
+          to="/login-signup"
+        >
+          Login
+        </Link>
+      </li>
+    </ul>
+  </nav>
+  <nav
+    className="mobile-navigation"
+  >
+    <div
+      className="profile nav-icon"
+    >
+      <Link
+        className="profile-link"
+        replace={false}
+        to=""
+      >
+        <div
+          className="profile-picture"
+        >
+          <div
+            className="profile-image"
+          />
+        </div>
+      </Link>
+    </div>
+    <div
+      className="mob-search nav-icon"
+    >
+      <i
+        className="fas fa-search"
+        id="fa-search"
+      />
+    </div>
+    <div
+      className="dropdown-menu nav-icon"
+    >
+      <i
+        className="fas fa-bars"
+      />
+    </div>
+  </nav>
+  <form
+    className="mob-search-form search"
+  >
+    <input
+      className="search-form-input"
+      name="search"
+      placeholder="search"
+      type="text"
+    />
+    <input
+      className=""
+      name="submit"
+      type="submit"
+    />
+  </form>
+  <ul
+    className="dropdown-menu-items"
+  >
+    <li>
+      <Link
+        replace={false}
+        to="/"
+      >
+        Home
+      </Link>
+    </li>
+    <li>
+      <Link
+        replace={false}
+        to="/post-question"
+      >
+        Post A Question
+      </Link>
+    </li>
+    <li>
+      <Link
+        replace={false}
+        to="/login-signup"
+      >
+        Login/Sign Up
+      </Link>
+    </li>
+    <li>
+      <Link
+        className="logout"
+        replace={false}
+        to="#"
+      >
+        Log Out
+      </Link>
+    </li>
+  </ul>
+</header>
+`;
