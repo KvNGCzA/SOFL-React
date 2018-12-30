@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import sidebarAction from '../../actions/sidebarActions';
 
-class Sidebar extends Component {
+export class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -25,8 +25,10 @@ class Sidebar extends Component {
             {
               hotQuestions.map((question, index) => (
                 <li key={String(index)}>
-                  <i className="fab fa-gripfire"></i>
-                  <Link to={`/question/${question.id}`}> {question.title}</Link>
+                  <i className="fab fa-gripfire" />
+                  <Link to={`/question/${question.id}`}>
+                    {question.title}
+                  </Link>
                 </li>
               ))
             }
@@ -38,8 +40,9 @@ class Sidebar extends Component {
 }
 
 Sidebar.propTypes = {
-  hotQuestions: PropTypes.array.isRequired
-}
+  hotQuestions: PropTypes.array.isRequired,
+  fetchHotQuestions: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({ hotQuestions: state.sidebar.results });
 
