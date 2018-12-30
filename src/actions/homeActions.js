@@ -1,4 +1,7 @@
+import { toastr } from 'react-redux-toastr';
+
 import { HOME_SUCCESS, HOME_FAILURE } from './actionTypes';
+import { globalLoading } from './globalActions';
 
 export const homeSuccess = results => ({
   type: HOME_SUCCESS,
@@ -12,20 +15,18 @@ export const homeFailure = errors => ({
   errors,
 });
 
-const homeAction = () => (dispatch) => {
-  return fetch('https://safe-inlet-99347.herokuapp.com/api/v2/questions')
-    .then(
-      res => res.json()
-      // (error) => {
-      //   toastr.error('An error has occured, please try again!');
-      // }
-    )
-    .then((response) => {
-      if (response.status !== 200) {
-        return dispatch(homeFailure(response.errors.message));
-      }
-      return dispatch(homeSuccess(response.questions[0]));
-    });
-};
+const homeAction = () => dispatch => fetch(`${process.env.API_BASE_URL}/questions`)
+  .then(
+    res => res.json(),
+    () => toastr.error('An error has occured, please try again!')
+  )
+  .then((response) => {
+    if (response.status !== 200) {
+      dispatch(homeFailure(response.errors.message));
+      return dispatch(globalLoading(false));
+    }
+    dispatch(homeSuccess(response.questions[0]));
+    return dispatch(globalLoading(false));
+  });
 
 export default homeAction;
