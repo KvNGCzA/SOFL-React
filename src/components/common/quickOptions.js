@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import '../../js/quickOptions';
+import DefaultSearchForm from './SearchForm';
+import '../../../public/js/quickOptions';
 
 class QuickOptions extends Component {
   constructor(props) {
@@ -13,10 +14,7 @@ class QuickOptions extends Component {
 
         <div className="quick-search option">
           <i className="fas fa-search" id="fa-search" />
-          <form className="search">
-            <input type="text" name="search" placeholder="search" />
-            <input type="submit" className="" />
-          </form>
+          <DefaultSearchForm mobile={false} />
         </div>
 
         <div className="quick-question option">

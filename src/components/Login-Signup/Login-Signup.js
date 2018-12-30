@@ -7,7 +7,7 @@ import loginAction from '../../actions/loginAction';
 import signupAction from '../../actions/signupAction';
 import { globalLoading } from '../../actions/globalActions';
 
-const LoginForm = (props) => {
+export const LoginForm = (props) => {
   const { handleSwitch, handleLogin } = props;
   return (
     <div id="login-form" className="c-forms">
@@ -27,7 +27,7 @@ const LoginForm = (props) => {
   );
 };
 
-const SignUpForm = (props) => {
+export const SignUpForm = (props) => {
   const { handleSwitch, handleSignup } = props;
   return (
     <div id="signup-form" className="c-forms">
@@ -52,7 +52,7 @@ const SignUpForm = (props) => {
   );
 };
 
-class LoginSignup extends Component {
+export class LoginSignup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -82,7 +82,7 @@ class LoginSignup extends Component {
     e.preventDefault();
     const { signupUser, triggerLoading } = this.props;
     triggerLoading(true);
-    const formData = new FormData({ name: 'chris' });
+    const formData = new FormData();
     const keys = [
       'firstName',
       'lastName',
@@ -147,8 +147,6 @@ LoginSignup.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  questions: state.home.results,
-  hotQuestions: state.sidebar.results,
   isLoggedIn: state.global.isLoggedIn
 });
 
