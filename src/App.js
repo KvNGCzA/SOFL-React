@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import ReduxToastr from 'react-redux-toastr';
 import Header from './components/common/Header/header';
 import Footer from './components/common/Footer/footer';
-import QuickOptions from './components/common/quickOptions';
+import QuickOptions from './components/common/QuickOptions';
 import routes from './routes';
 import checkUserStatus from './services/checkUserStatus';
 import NotFound from './components/NotFound/NotFound';
