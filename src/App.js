@@ -47,7 +47,7 @@ class App extends Component {
               </Switch>
               <Footer />
               <ReduxToastr
-                timeOut={null}
+                timeOut={5000}
                 newestOnTop
                 preventDuplicates
                 position="top-right"
