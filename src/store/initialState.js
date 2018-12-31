@@ -17,5 +17,10 @@ export default {
     results: [],
     query: '',
     errors: ''
+  },
+  postQuestion: {
+    title: '',
+    content: '',
+    tags: ''
   }
 };
