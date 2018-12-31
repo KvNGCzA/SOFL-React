@@ -1,6 +1,7 @@
 import { toastr } from 'react-redux-toastr';
 
 import { SIDEBAR_SUCCESS, SIDEBAR_FAILURE } from './actionTypes';
+import { globalFailure } from './globalActions';
 
 export const sidebarSuccess = results => ({
   type: SIDEBAR_SUCCESS,
@@ -17,7 +18,10 @@ export const sidebarFailure = errors => ({
 const sidebarAction = () => dispatch => fetch(`${process.env.API_BASE_URL}/questions`)
   .then(
     res => res.json(),
-    () => toastr.error('An error has occured, please try again!')
+    (error) => {
+      dispatch(globalFailure(['An error has occured', error]));
+      toastr.error('An error has occured, please try again!');
+    }
   )
   .then((response) => {
     if (response.status !== 200) {

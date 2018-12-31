@@ -1,7 +1,7 @@
 import { toastr } from 'react-redux-toastr';
 
 import { HOME_SUCCESS, HOME_FAILURE } from './actionTypes';
-import { globalLoading } from './globalActions';
+import { globalLoading, globalFailure } from './globalActions';
 
 export const homeSuccess = results => ({
   type: HOME_SUCCESS,
@@ -18,7 +18,10 @@ export const homeFailure = errors => ({
 const homeAction = () => dispatch => fetch(`${process.env.API_BASE_URL}/questions`)
   .then(
     res => res.json(),
-    () => toastr.error('An error has occured, please try again!')
+    (error) => {
+      dispatch(globalFailure(['An error has occured', error]));
+      toastr.error('An error has occured, please try again!');
+    }
   )
   .then((response) => {
     if (response.status !== 200) {

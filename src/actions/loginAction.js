@@ -7,7 +7,10 @@ import userAction from './userActions';
 const loginAction = userObject => dispatch => fetch(`${process.env.API_BASE_URL}/auth/login`, requestOptions(userObject, 'POST', null))
   .then(
     res => res.json(),
-    () => toastr.error('An error has occured, please try again!')
+    (error) => {
+      dispatch(globalFailure(['An error has occured', error]));
+      toastr.error('An error has occured, please try again!');
+    }
   )
   .then((user) => {
     if (user.profile) {
