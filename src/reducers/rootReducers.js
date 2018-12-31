@@ -4,6 +4,7 @@ import sidebar from './sidebarReducer';
 import home from './homeReducer';
 import global from './globalReducer';
 import user from './userReducer';
+import searchResults from './searchReducer';
 
 const rootReducer = combineReducers({
   toastr,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   user,
   home,
   sidebar,
+  searchResults
 });
 
 export default rootReducer;

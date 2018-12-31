@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import DefaultSearchForm from './SearchForm';
 import '../../../public/js/quickOptions';
 
-class QuickOptions extends Component {
+export class QuickOptions extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
+    const { isLoggedIn } = this.props;
     return (
       <div className="quick-options">
 
@@ -20,15 +24,14 @@ class QuickOptions extends Component {
         <div className="quick-question option">
           <i className="fas fa-pencil-alt" />
           <h2>Post a question</h2>
-
           <div className="question-form">
-            <p className="login-info">
-              <a href="/login-signup">Login or Signup</a>
+            <p className="login-info" style={isLoggedIn ? { display: 'none' } : { display: 'block' }}>
+              <Link to="/login-signup">Login or Signup</Link>
               {' '}
               to post a question
             </p>
             <p className="postQuestion-success-message">Question Posted!</p>
-            <form className="postquestionform" method="post">
+            <form className="postquestionform" method="post" style={isLoggedIn ? { display: 'block' } : { display: 'none' }}>
               <input type="text" name="title" placeholder="Title" required="" />
               <textarea name="content" rows="8" cols="80" placeholder="Enter your question here" required="" />
               <input type="text" name="tags" placeholder="Tags: Seperate multiple tags with commas e.g. ruby, java" required="" />
@@ -41,4 +44,12 @@ class QuickOptions extends Component {
   }
 }
 
-export default QuickOptions;
+QuickOptions.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = state => ({
+  isLoggedIn: state.global.isLoggedIn
+});
+
+export default connect(mapStateToProps)(QuickOptions);

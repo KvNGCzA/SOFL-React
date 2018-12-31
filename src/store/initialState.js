@@ -12,5 +12,10 @@ export default {
     results: [],
     errors: ''
   },
-  userInfo: {}
+  userInfo: {},
+  searchResults: {
+    results: [],
+    query: '',
+    errors: ''
+  }
 };
