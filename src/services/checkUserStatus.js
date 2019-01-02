@@ -1,4 +1,3 @@
-
 import verifyToken from '../utils/verifyToken';
 import { persistor } from '../store/store';
 

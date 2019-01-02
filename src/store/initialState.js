@@ -35,5 +35,9 @@ export default {
     question: {},
     comments: [],
     errors: ''
+  },
+  currentComment: {
+    id: '',
+    answer: ''
   }
 };

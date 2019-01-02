@@ -32,14 +32,16 @@ const store = mockStore(initialState);
 test('Header snapshot test', () => {
   const component = shallow(<DefaultHeader store={store} />);
   expect(component).toMatchSnapshot();
+  component.props().logOutAction(true);
 });
 
 test('Header snapshot test', () => {
-  const component = shallow(<Header isLoggedIn />);
+  const component = shallow(<Header logOutAction={jest.fn()} isLoggedIn />);
   expect(component).toMatchSnapshot();
+  component.instance().logOutUser();
 });
 
 test('Header snapshot test', () => {
-  const component = shallow(<Header isLoggedIn={false} />);
+  const component = shallow(<Header logOutAction={jest.fn()} isLoggedIn={false} />);
   expect(component).toMatchSnapshot();
 });

@@ -9,6 +9,7 @@ import postQuestionReducer from './postQuestionReducer';
 import profileReducer from './profileReducer';
 import profileQuestionReducer from './profileQuestionReducer';
 import questionReducer from './questionReducer';
+import commentReducer from './commentReducer';
 
 const rootReducer = combineReducers({
   toastr,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   postQuestion: postQuestionReducer,
   profile: profileReducer,
   profileQuestion: profileQuestionReducer,
-  singleQuestion: questionReducer
+  singleQuestion: questionReducer,
+  currentComment: commentReducer
 });
 
 export default rootReducer;

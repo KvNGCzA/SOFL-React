@@ -52,7 +52,7 @@ export class ProfilePage extends Component {
       questions = mostAnsweredQuestions;
       heading = `${profile.fullname.split(' ')[0]}'s Most Answered Questions`;
     }
-    document.body.classList.add('page-profile');
+    // document.body.classList.add('page-profile');
 
     return (
       <div className="main">
@@ -60,7 +60,7 @@ export class ProfilePage extends Component {
           <ProfileCardComponent profile={profile} />
         </div>
 
-        <div className="site-content">
+        <div className="site-content profile-page">
           <div className="profile-page-cont">
             <ProfileCardComponent profile={profile} />
             <div id="profile-tab">
