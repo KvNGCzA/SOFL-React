@@ -1,7 +1,7 @@
 import { toastr } from 'react-redux-toastr';
 
 import { globalFailure, globalLoading } from './globalActions';
-import { POST_QUESTION_SUCCESS, POST_QUESTION_FAILURE, POST_QUESTION_INPROGRESS } from './actionTypes';
+import { POST_QUESTION_SUCCESS, POST_QUESTION_INPROGRESS } from './actionTypes';
 import requestOptions from '../utils/requestOptions';
 import getToken from '../utils/getToken';
 
@@ -10,11 +10,6 @@ export const postQuestionSuccess = () => ({
   title: '',
   content: '',
   tags: '',
-});
-
-export const postQuestionFailure = body => ({
-  type: POST_QUESTION_FAILURE,
-  body
 });
 
 export const postQuestionInProgress = payload => ({

@@ -6,6 +6,8 @@ import global from './globalReducer';
 import user from './userReducer';
 import searchResults from './searchReducer';
 import postQuestionReducer from './postQuestionReducer';
+import profileReducer from './profileReducer';
+import profileQuestionReducer from './profileQuestionReducer';
 
 const rootReducer = combineReducers({
   toastr,
@@ -14,7 +16,9 @@ const rootReducer = combineReducers({
   home,
   sidebar,
   searchResults,
-  postQuestion: postQuestionReducer
+  postQuestion: postQuestionReducer,
+  profile: profileReducer,
+  profileQuestion: profileQuestionReducer
 });
 
 export default rootReducer;

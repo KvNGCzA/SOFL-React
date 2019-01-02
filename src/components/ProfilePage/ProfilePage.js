@@ -1,97 +1,118 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import SideBar from '../Sidebar/SideBar';
+import ProfileCardComponent from '../common/ProfileCard';
+import profileAction from '../../actions/profileAction';
+import QuestionCardComponent from '../common/QuestionCard';
+import userQuestionAction from '../../actions/userQuestionAction';
+import { globalLoading } from '../../actions/globalActions';
 
-class ProfilePage extends Component {
+export class ProfilePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentTab: 'Most Recent'
+    };
+    this.handleTab = this.handleTab.bind(this);
+  }
+
+  componentDidMount() {
+    const {
+      match,
+      getUserProfile,
+      getUserQuestions,
+      loading
+    } = this.props;
+    loading(true);
+    const { username } = match.params;
+    getUserProfile(username);
+    getUserQuestions(username);
+  }
+
+  handleTab(e) {
+    this.setState({ currentTab: e.target.textContent });
+  }
+
   render() {
+    const { currentTab } = this.state;
+    const { profile, userQuestions } = this.props;
+    let heading, questions;
+    const [allQuestions, mostAnsweredQuestions] = userQuestions;
+
+    if (Object.keys(profile).length < 1 || userQuestions.length < 1) {
+      return ('');
+    }
+
+    if (currentTab === 'Most Recent') {
+      questions = allQuestions;
+      heading = `${profile.fullname.split(' ')[0]}'s Recent Questions`;
+    } else {
+      questions = mostAnsweredQuestions;
+      heading = `${profile.fullname.split(' ')[0]}'s Most Answered Questions`;
+    }
+    document.body.classList.add('page-profile');
+
     return (
       <div className="main">
         <div className="lsidebar">
-
-          <div className="side-access-forms">
-            <div id="side-signup-form" className="c-forms">
-              <h2>Sign Up</h2><span>Have an account? <button id="s-t-login" className="c-t-btn">Login</button> </span>
-              <form action="index.html" method="post">
-                <input type="text" name="fname" placeholder="First Name" />
-                <input type="text" name="lname" placeholder="Last Name" />
-                <input type="email" name="email" placeholder="Email" />
-                <input type="text" name="username" placeholder="Username" />
-                <input type="password" name="pwd" placeholder="Password" />
-                <input type="button" name="submit" value="Sign Up" />
-              </form>
-            </div>
-
-            <div id="side-login-form" className="c-forms">
-                <h2>Login</h2><span>Don't have an account? <button id="s-t-signup" className="c-t-btn">Sign up</button> </span>
-                <form action="index.html" method="post">
-                  <input type="text" name="username" placeholder="Username" value="" />
-                  <input type="password" name="pwd" value="" placeholder="Password" />
-                  <input type="button" name="submit" value="Login" />
-                </form>
-              </div>
-          </div>
-
-          <div className="profile">
-            <a href="" className="l-settings" title="Edit your profile"><span>Edit Profile </span><i className="fas fa-cogs"></i></a>
-            <div className="profile-picture">
-              <div className="profile-image" />
-            </div>
-            <div className="profile-info">
-              <ul>
-                <li className="profile-full-name" title="Full Name"></li>
-                <li className="profile-username" title="Username"><i className="fas fa-user"></i></li>
-                <li className="profile-occupation" title="Occupation"><i className="fas fa-suitcase"></i></li>
-                <li className="profile-msince" title="Date Joined"><i className="fas fa-users"></i><span> Joined:</span></li>
-                <li className="profile-num-ans" title="Replies Given"><i className="fas fa-check"></i><span> Replied:</span></li>
-                <li className="profile-num-que" title="Questions Posted"><i className="fas fa-question"></i><span> Asked:</span></li>
-                <li className="profile-num-likes" title="Likes Received"><i className="fas fa-thumbs-up"></i><span> Likes Received:</span></li>
-                <li className="profile-visit-profile" title="Visit Your Profile"><a href="/profile">Go to profile</a></li>
-              </ul>
-            </div>
-          </div>
+          <ProfileCardComponent profile={profile} />
         </div>
 
         <div className="site-content">
-            <div className="profile-page-cont">
-
-              <div className="profile">
-                <a href="" className="l-settings" title="Edit your profile"><span>Edit Profile </span><i className="fas fa-cogs"></i></a>
-                <div className="profile-picture">
-                  <div className="profile-image" />
-                </div>
-                <div className="profile-info">
-                  <ul>
-                    <li className="profile-full-name" title="Full Name"></li>
-                    <li className="profile-username"title="Username"><i className="fas fa-user" ></i></li>
-                    <li className="profile-occupation"title="Occupation"><i className="fas fa-suitcase" ></i></li>
-                    <li className="profile-msince"title="Date Joined"><i className="fas fa-users" ></i><span> Joined:</span></li>
-                    <li className="profile-num-ans"title="Replies Given"><i className="fas fa-check" ></i><span> Replied:</span></li>
-                    <li className="profile-num-que"title="Questions Posted"><i className="fas fa-question" ></i><span> Asked:</span></li>
-                    <li className="profile-visit-profile"title="Visit Your Profile"><a href="/profile" >Go to profile</a></li>
-                  </ul>
-                </div>
+          <div className="profile-page-cont">
+            <ProfileCardComponent profile={profile} />
+            <div id="profile-tab">
+              <ul className="tab-cont">
+                <li style={currentTab === 'Most Recent' ? { backgroundColor: 'rgb(226, 226, 226)' } : { backgroundColor: 'initial' }}>
+                  <Link to="#" onClick={this.handleTab}>Most Recent</Link>
+                </li>
+                <li style={currentTab !== 'Most Recent' ? { backgroundColor: 'rgb(226, 226, 226)' } : { backgroundColor: 'initial' }}>
+                  <Link to="#" onClick={this.handleTab}>Most Answered</Link>
+                </li>
+              </ul>
+              {/* {tab} */}
+              <div id="most-recent">
+                <h2 className="heading" id="head1">
+                  {heading}
+                </h2>
+                {
+                  questions.map((question, index) => (
+                    <QuestionCardComponent question={question} key={String(index)} />
+                  ))
+                }
               </div>
-
-              <div id="profile-tab">
-                <ul className="tab-cont">
-                    <li><a href="#most-recent">Most Recent</a></li>
-                    <li><a href="#most-answered">Most Answered</a></li>
-                </ul> 
-                <div id="most-recent">
-                    <h2 className="heading" id="head1" />
-                </div>
-                <div id="most-answered">
-                    <h2 className="heading" id="head2" />
-                </div>
-              </div>
-
             </div>
+
           </div>
+        </div>
 
         <SideBar />
-        
+
       </div>
     );
   }
 }
 
-export default ProfilePage;
+ProfilePage.propTypes = {
+  profile: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  getUserProfile: PropTypes.func.isRequired,
+  getUserQuestions: PropTypes.func.isRequired,
+  loading: PropTypes.func.isRequired,
+  userQuestions: PropTypes.array.isRequired
+};
+
+const mapStateToProps = state => ({
+  profile: state.profile.profile,
+  userQuestions: state.profileQuestion.questions
+});
+
+const mapDispatchToProps = dispatch => ({
+  getUserProfile: username => dispatch(profileAction(username)),
+  getUserQuestions: username => dispatch(userQuestionAction(username)),
+  loading: status => dispatch(globalLoading(status))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

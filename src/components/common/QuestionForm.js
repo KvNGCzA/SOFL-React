@@ -8,7 +8,6 @@ import { globalLoading } from '../../actions/globalActions';
 export class QuestionForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTitleInput = this.handleTitleInput.bind(this);
     this.handleContentInput = this.handleContentInput.bind(this);
