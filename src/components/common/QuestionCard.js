@@ -71,7 +71,9 @@ export class QuestionCard extends Component {
 
         <div className="q-details">
           {dropDown}
-          <p className="question-title"><Link to={`/question/${question.id}`} className="gotoQ">{question.title}</Link></p>
+          <p className="question-title">
+            <Link to={`/question/${question.id}`} className="gotoQ">{question.title}</Link>
+          </p>
           <ul className="tags">
             {
               question.tags.split(',').map((tag, i) => (

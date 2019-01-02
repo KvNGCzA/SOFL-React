@@ -32,6 +32,7 @@ const postQuestion = (questionBody, history) => dispatch => fetch(`${process.env
     }
     const { id } = response.question;
     dispatch(postQuestionSuccess());
+    toastr.success('Question posted!');
     history.push(`/question/${id}`);
     return dispatch(globalLoading(false));
   });
