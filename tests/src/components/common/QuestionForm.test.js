@@ -44,20 +44,33 @@ const history = {
   push: jest.fn()
 };
 
-const doNothing = donothing => donothing;
 
 test('QuestionForm snapshot test', () => {
   const firstComponent = shallow(<QuestionForm
-    handleProgress={doNothing}
     isLoggedIn
     postState={postState}
+    sendQuestion={jest.fn()}
+    loading={jest.fn()}
+    history={history}
+    handleProgress={jest.fn()}
   />);
-  const secondComponent = shallow(<QuestionForm isLoggedIn={false} postState={postState} />);
+  const secondComponent = shallow(<QuestionForm
+    isLoggedIn={false}
+    postState={postState}
+    sendQuestion={jest.fn()}
+    loading={jest.fn()}
+    history={history}
+    handleProgress={jest.fn()}
+    />);
   expect(firstComponent).toMatchSnapshot();
   expect(secondComponent).toMatchSnapshot();
   firstComponent.instance().handleTitleInput({ target: { value: 'chris' } });
-  firstComponent.instance().handleTitleInput({ target: { value: 'chris' } });
-  firstComponent.instance().handleTitleInput({ target: { value: 'chris' } });
+  firstComponent.instance().handleTagsInput({ target: { value: 'chris' } });
+  firstComponent.instance().handleContentInput({ target: { value: 'chris' } });
+  firstComponent.instance().handleSubmit({
+    preventDefault: jest.fn(),
+    target: { ...postState }
+  });
 });
 
 test('QuestionForm snapshot test', () => {

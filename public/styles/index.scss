@@ -762,6 +762,7 @@ a, input[type="button"], input[type="submit"], i, button{
               li{
                 padding: 0.5em 0;
                 font-size: 0.8em;
+                color: black;
                 border-bottom: 1px solid $borderGray;
                 &:last-child{
                   border-bottom: none;
@@ -1140,6 +1141,7 @@ a, input[type="button"], input[type="submit"], i, button{
   .lsidebar{
     width: 20%;
     float: left;
+    height: 20em;
 
     .side-access-forms{
       width: 100%;
@@ -1212,6 +1214,7 @@ a, input[type="button"], input[type="submit"], i, button{
       display: block;
       z-index: 999;
       width: 20%;
+      top: 30%;
       position: fixed;
       background-color: white;
       border-top: 1px solid $hoverColor;

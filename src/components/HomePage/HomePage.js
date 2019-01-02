@@ -6,6 +6,7 @@ import SidebarComponent from '../Sidebar/SideBar';
 import homeActions from '../../actions/homeActions';
 import formatDate from '../../utils/formatDate';
 import { globalLoading } from '../../actions/globalActions';
+import QuestionCard from '../common/QuestionCard';
 
 export class HomePage extends Component {
   constructor(props) {
@@ -46,44 +47,7 @@ export class HomePage extends Component {
             <div className="tab all" id="tab1">
               {
                 presentQuestions.map((question, index) => (
-                  <div className="single-question" key={String(index)}>
-                    <div className="q-meta">
-                      <ul>
-                        <li className="answer-count">
-                          <Link to="#">Answers</Link>
-                          <Link to="#" className={question.answers_count > 0 ? 'answer-count-dis answered' : 'answer-count-dis'}>{question.answers_count}</Link>
-                        </li>
-                        <li className="likes-count">
-                          <Link to="#">UpVotes</Link>
-                          <Link to="#" className={question.likes !== null && question.likes.length > 0 ? 'likes-count-dis liked' : 'likes-count-dis'}>{question.likes === null ? 0 : question.likes.length}</Link>
-                        </li>
-                        <li className="views-count">
-                          <Link to="#">DownVotes</Link>
-                          <Link to="#" className={question.dislikes !== null && question.dislikes.length > 0 ? 'views-count-dis viewed' : 'views-count-dis'}>{question.dislikes === null ? 0 : question.dislikes.length}</Link>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div className="q-details">
-                      <div className="edit-option-container" />
-                      <p className="question-title"><Link to={`/question/${question.id}`} className="gotoQ">{question.title}</Link></p>
-                      <ul className="tags">
-                        {
-                          question.tags.split(',').map((tag, i) => (
-                            <li key={String(i)}><Link to="#">{tag}</Link></li>
-                          ))
-                        }
-                      </ul>
-                      <span className="posted-on">
-                        Posted on
-                        <Link to="#">
-                          {formatDate(question.created_at)}
-                        </Link>
-                        by
-                        <Link to={`/profile/${question.username}`}>{question.username}</Link>
-                      </span>
-                    </div>
-                  </div>
+                  <QuestionCard question={question} key={String(index)} />
                 ))
               }
 

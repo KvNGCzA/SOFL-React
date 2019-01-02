@@ -17,21 +17,28 @@ export class Sidebar extends Component {
 
   render() {
     const { hotQuestions } = this.props;
+    const body = hotQuestions.length < 1 ? (
+      <li>
+        <Link to="#">
+          No hot questions now
+        </Link>
+      </li>
+    ) : (
+      hotQuestions.map((question, index) => (
+        <li key={String(index)}>
+          <i className="fab fa-gripfire" />
+          <Link to={`/question/${question.id}`}>
+            {question.title}
+          </Link>
+        </li>
+      ))
+    );
     return (
       <div className="side-bar">
         <div className="hot-questions">
           <h3>Hot Questions</h3>
           <ul id="hot-questions">
-            {
-              hotQuestions.map((question, index) => (
-                <li key={String(index)}>
-                  <i className="fab fa-gripfire" />
-                  <Link to={`/question/${question.id}`}>
-                    {question.title}
-                  </Link>
-                </li>
-              ))
-            }
+            {body}
           </ul>
         </div>
       </div>

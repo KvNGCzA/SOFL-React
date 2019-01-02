@@ -22,5 +22,13 @@ export default {
     title: '',
     content: '',
     tags: ''
+  },
+  profile: {
+    profile: {},
+    errors: ''
+  },
+  profileQuestion: {
+    questions: [],
+    errors: ''
   }
 };
