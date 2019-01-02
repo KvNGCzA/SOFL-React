@@ -8,6 +8,7 @@ import searchResults from './searchReducer';
 import postQuestionReducer from './postQuestionReducer';
 import profileReducer from './profileReducer';
 import profileQuestionReducer from './profileQuestionReducer';
+import questionReducer from './questionReducer';
 
 const rootReducer = combineReducers({
   toastr,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   searchResults,
   postQuestion: postQuestionReducer,
   profile: profileReducer,
-  profileQuestion: profileQuestionReducer
+  profileQuestion: profileQuestionReducer,
+  singleQuestion: questionReducer
 });
 
 export default rootReducer;

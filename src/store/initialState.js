@@ -30,5 +30,10 @@ export default {
   profileQuestion: {
     questions: [],
     errors: ''
+  },
+  singleQuestion: {
+    question: {},
+    comments: [],
+    errors: ''
   }
 };

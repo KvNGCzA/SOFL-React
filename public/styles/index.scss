@@ -125,40 +125,6 @@ body.page-post-a-question{
 }// page-post-a-question
 
 body.logged-in {
-  
-  // header {
-  //   .main-navigation {
-  //     ul {
-  //       li {
-  //         &:nth-child(2) {
-  //           display: inline;
-  //         }          
-  //         &:nth-child(3) {
-  //           display: inline;
-  //         }
-  //         &:last-child{
-  //           display: none;
-  //         }
-  //       }// li
-  //     }// ul
-  //   }// .main-navigation
-  //   .mobile-navigation {
-  //     top: -1em;
-  //     .profile {
-  //       display: inline-block;
-  //     }
-  //   }// mobile-navigation
-  //   .dropdown-menu-items {
-  //     li{
-  //       &:nth-child(3){
-  //         display: none;
-  //       }
-  //       &:last-child{
-  //         display: inline-block;
-  //       }
-  //     }// li
-  //   }// .dropdown-menu-items
-  // }// header
 
   .main{
 
@@ -185,7 +151,6 @@ body.logged-in {
         }//.questionBody
         .action-meta-cont{
           .meta-cont{
-            width: 50%;
             .date-posted{
               span{
                 a{
@@ -200,7 +165,6 @@ body.logged-in {
             }//.tags
           }//meta-cont
           .action-buttons{
-            display: inline-block;
           }//.action-buttons
         }//.action-meta-cont
       }//.question-cont
@@ -838,6 +802,7 @@ a, input[type="button"], input[type="submit"], i, button{
 
     .action-buttons{
       text-align: right;
+      display: inline-block;
       .action{
         margin: 1em 0.3em;
         &:hover{
@@ -902,7 +867,7 @@ a, input[type="button"], input[type="submit"], i, button{
             text-align: right;
             padding: 6em 0 0;
             display: inline-block;
-            width: 100%;
+            width: 50%;
             .date-posted{
               display: block;
               color: $textGray;
@@ -961,8 +926,9 @@ a, input[type="button"], input[type="submit"], i, button{
             }// .likes-dislikes-cont
             .action-buttons {
               padding: 1em 0 0.3em;
+              display: block;
               .action {
-                display: none;
+                // display: none;
               }
             } // .action-buttons 
             &:last-child{

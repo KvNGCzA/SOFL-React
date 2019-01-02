@@ -1,8 +1,8 @@
-import Home from '../src/components/HomePage/HomePage';
-import LoginSignup from '../src/components/Login-Signup/Login-Signup';
-import SearchPage from './components/SearchPage/SearchPage';
+import Home from './components/HomePage/HomePage';
+import LoginSignupComponent from './components/Login-Signup/Login-Signup';
+import SearchPageComponent from './components/SearchPage/SearchPage';
 import PostQuestion from './components/PostQuestion/PostQuestion';
-import ProfilePage from './components/ProfilePage/ProfilePage';
+import ProfilePageComponent from './components/ProfilePage/ProfilePage';
 import Question from './components/Question/Question';
 
 const routes = [
@@ -13,12 +13,12 @@ const routes = [
   },
   {
     path: '/login-signup',
-    component: LoginSignup,
+    component: LoginSignupComponent,
     exact: true
   },
   {
     path: '/search',
-    component: SearchPage
+    component: SearchPageComponent
   },
   {
     path: '/post-question',
@@ -27,7 +27,7 @@ const routes = [
   },
   {
     path: '/profile/:username',
-    component: ProfilePage,
+    component: ProfilePageComponent,
   },
   {
     path: '/question/:id',
