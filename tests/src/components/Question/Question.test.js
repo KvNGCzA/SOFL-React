@@ -35,7 +35,9 @@ describe('Question components snapshot test', () => {
   const firstComponent = shallow(<DefaultQuestion
     match={match}
     comments={comments}
-    store={store} />);
+    store={store}
+    location={{ location: { pathname: 'question/1' } }}
+    />);
   test('Question snapshot test', () => {
     fetchMock.get(`${process.env.API_BASE_URL}/questions/1`, { status: 200, question, answers: [] });
     expect(firstComponent).toMatchSnapshot();

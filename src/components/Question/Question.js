@@ -10,6 +10,7 @@ import questionAction from '../../actions/questionAction';
 import SideBar from '../Sidebar/SideBar';
 import formatDate from '../../utils/formatDate';
 import CommentCard from './CommentCard';
+import CommentFormComponent from './CommentForm';
 
 export class Question extends Component {
   constructor(props) {
@@ -63,7 +64,8 @@ export class Question extends Component {
       user,
       question,
       comments,
-      isLoggedIn
+      isLoggedIn,
+      match
     } = this.props;
     if (Object.keys(question).length < 1) {
       return '';
@@ -136,12 +138,7 @@ export class Question extends Component {
               </div>
             </div>
             <CommentCard comments={comments} />
-            <form className="comment-form">
-              <h2>Post an Answer</h2>
-              <p id="success-answer" />
-              <textarea name="answer" placeholder="Enter your answer here..." />
-              <input type="submit" name="submit" value="Post" />
-            </form>
+            <CommentFormComponent match={match} />
           </div>
         </div>
         <SideBar />

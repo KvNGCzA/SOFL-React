@@ -1,14 +1,25 @@
 import React, { Component, Fragment } from 'react';
+import { toastr } from 'react-redux-toastr';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import DefaultSearchForm from '../SearchForm';
+import { globalLoggedIn } from '../../../actions/globalActions';
 import '../../../../public/js/mobileNavigation';
 
 export class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.logOutUser = this.logOutUser.bind(this);
+  }
+
+  logOutUser() {
+    const { logOutAction } = this.props;
+    logOutAction();
+    localStorage.clear();
+    return toastr.success('Goodbye! Come back soon');
   }
 
   render() {
@@ -16,7 +27,7 @@ export class Header extends Component {
     const mainNav = isLoggedIn ? (
       <Fragment>
         <li><Link className="profile-link" to={`/profile/${username}`}>Profile</Link></li>
-        <li><Link to="#" className="logout">Logout</Link></li>
+        <li><Link to="#" className="logout" onClick={this.logOutUser}>Logout</Link></li>
       </Fragment>
     ) : (
       <li><Link to="/login-signup">Login</Link></li>
@@ -35,7 +46,7 @@ export class Header extends Component {
     const mobNav = isLoggedIn ? (
       <Fragment>
         <li><Link to="/post-question">Post A Question</Link></li>
-        <li><Link to="#" className="logout">Log Out</Link></li>
+        <li><Link to="#" className="logout" onClick={this.logOutUser}>Log Out</Link></li>
       </Fragment>
     ) : (
       <li><Link to="/login-signup">Login/Sign Up</Link></li>
@@ -82,6 +93,7 @@ Header.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   username: PropTypes.string,
   profileImage: PropTypes.string,
+  logOutAction: PropTypes.func.isRequired,
 };
 
 Header.defaultProps = {
@@ -95,4 +107,8 @@ const mapStateToProps = state => ({
   profileImage: state.user.profileimage
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = dispatch => ({
+  logOutAction: () => dispatch(globalLoggedIn(false))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

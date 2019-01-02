@@ -88,17 +88,6 @@ body.page-profile{
   .main{
     .lsidebar{
       width:20%;
-      .profile{
-        .profile-info{
-          ul{
-            li{
-              &:last-child{
-                display: none;
-              }//last-child
-            }//li
-          }//ul
-        }//profile-info
-      }//.profile
     }//.lsidebar
     .site-content{
       width: 55%;
@@ -573,6 +562,8 @@ a, input[type="button"], input[type="submit"], i, button{
   width: 100%;
   height: auto;
   margin: 4em 0 0;
+
+  
   .site-content{
     width: 75%;
     height: 100%;
@@ -1102,7 +1093,10 @@ a, input[type="button"], input[type="submit"], i, button{
     }// search-cont
 
   }//.site-content
-
+  
+  .profile-page {
+    width: 55%;
+  }
   /**left side bar */
   .lsidebar{
     width: 20%;
@@ -1339,9 +1333,6 @@ a, input[type="button"], input[type="submit"], i, button{
             &:first-child{
               display: block;
             }
-            &:last-child{
-              display: none;
-            }//last-child
           }//li
         }//ul
       }//.profile-info
@@ -1413,9 +1404,6 @@ footer{
           .profile-info{
             ul{
               li{
-                &:last-child{
-                  display: none;
-                }//last-child
               }//li
             }//ul
           }//profile-info
@@ -1465,9 +1453,6 @@ footer{
           .profile-info{
             ul{
               li{
-                &:last-child{
-                  display: none;
-                }//last-child
               }//li
             }//ul
           }//profile-info

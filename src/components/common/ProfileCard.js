@@ -23,7 +23,7 @@ class ProfileCard extends Component {
     } = profile;
     return (
       <div className="profile">
-        <Link to="" className="l-settings" title="Edit your profile">
+        <Link to="#" className="l-settings" title="Edit your profile">
           <span>Edit Profile </span>
           <i className="fas fa-cogs" />
         </Link>
@@ -64,9 +64,6 @@ class ProfileCard extends Component {
             <li className="profile-num-likes" title="Likes Received">
               <i className="fas fa-thumbs-up" />
               <span> Likes Received:</span>
-            </li>
-            <li className="profile-visit-profile" title="Visit Your Profile">
-              <Link to="/profile">Go to profile</Link>
             </li>
           </ul>
         </div>
