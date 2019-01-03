@@ -33,15 +33,34 @@ test('Header snapshot test', () => {
   const component = shallow(<DefaultHeader store={store} />);
   expect(component).toMatchSnapshot();
   component.props().logOutAction(true);
+  component.props().emptyUserObject({
+    answered_count: '',
+    asked_count: '',
+    created_at: '',
+    email: '',
+    fullname: '',
+    id: '',
+    logged_in: '',
+    occupation: '',
+    profileimage: '',
+    token: '',
+    username: ''
+  });
 });
 
 test('Header snapshot test', () => {
-  const component = shallow(<Header logOutAction={jest.fn()} isLoggedIn />);
+  const component = shallow(<Header
+    logOutAction={jest.fn()}
+    emptyUserObject={jest.fn()}
+    isLoggedIn />);
   expect(component).toMatchSnapshot();
   component.instance().logOutUser();
 });
 
 test('Header snapshot test', () => {
-  const component = shallow(<Header logOutAction={jest.fn()} isLoggedIn={false} />);
+  const component = shallow(<Header
+    logOutAction={jest.fn()}
+    emptyUserObject={jest.fn()}
+    isLoggedIn={false} />);
   expect(component).toMatchSnapshot();
 });
