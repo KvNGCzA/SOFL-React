@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import DefaultSearchForm from '../SearchForm';
 import { globalLoggedIn } from '../../../actions/globalActions';
 import '../../../../public/js/mobileNavigation';
+import userAction from '../../../actions/userActions';
 
 export class Header extends Component {
   constructor(props) {
@@ -16,8 +17,21 @@ export class Header extends Component {
   }
 
   logOutUser() {
-    const { logOutAction } = this.props;
+    const { logOutAction, emptyUserObject } = this.props;
     logOutAction();
+    emptyUserObject({
+      answered_count: '',
+      asked_count: '',
+      created_at: '',
+      email: '',
+      fullname: '',
+      id: '',
+      logged_in: '',
+      occupation: '',
+      profileimage: '',
+      token: '',
+      username: ''
+    });
     localStorage.clear();
     return toastr.success('Goodbye! Come back soon');
   }
@@ -94,6 +108,7 @@ Header.propTypes = {
   username: PropTypes.string,
   profileImage: PropTypes.string,
   logOutAction: PropTypes.func.isRequired,
+  emptyUserObject: PropTypes.func.isRequired,
 };
 
 Header.defaultProps = {
@@ -108,7 +123,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logOutAction: () => dispatch(globalLoggedIn(false))
+  logOutAction: () => dispatch(globalLoggedIn(false)),
+  emptyUserObject: obj => dispatch(userAction(obj))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
